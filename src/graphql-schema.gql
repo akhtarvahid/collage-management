@@ -1,0 +1,19 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Course {
+  id: ID!
+  name: String!
+  startDate: String!
+  endDate: String!
+  courseStatus: String!
+}
+
+type Query {
+  course: Course!
+}
+
+type Mutation {
+  createCourse(name: String!, startDate: String!, endDate: String!, courseStatus: String!): Course!
+}
