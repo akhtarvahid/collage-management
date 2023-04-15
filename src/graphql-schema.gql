@@ -16,5 +16,12 @@ type Query {
 }
 
 type Mutation {
-  createCourse(name: String!, startDate: String!, endDate: String!, courseStatus: String!): Course!
+  createCourse(createCourseInput: CreateCourseInput!): Course!
+}
+
+input CreateCourseInput {
+  name: String!
+  startDate: String!
+  endDate: String!
+  courseStatus: String!
 }
