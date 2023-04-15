@@ -10,6 +10,15 @@ type Course {
   courseStatus: String!
 }
 
+type StudentType {
+  id: ID!
+  firstName: String!
+  lastName: String!
+  mobile: String!
+  email: String!
+  studentId: String!
+}
+
 type Query {
   courses: [Course!]!
   course(id: String!): Course!
@@ -17,6 +26,7 @@ type Query {
 
 type Mutation {
   createCourse(createCourseInput: CreateCourseInput!): Course!
+  createStudent(firstName: String!, lastName: String!, mobile: String!, email: String!, studentId: String!): StudentType!
 }
 
 input CreateCourseInput {
