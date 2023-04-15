@@ -20,6 +20,15 @@ export class StudentService {
     return this.studentRepository.findOneBy({ id });
   }
 
+  async delete(id: string): Promise<string> {
+    const found = await this.studentRepository.findOneBy({ id });
+    this.studentRepository.delete({
+      id,
+    });
+
+    return `Student ${found.firstName.toUpperCase()} ${found.lastName.toUpperCase()} Successfully deleted`;
+  }
+
   create(createStudentInput: CreateStudentInput): Promise<StudentEntity> {
     const student = this.studentRepository.create({
       id: uuid(),

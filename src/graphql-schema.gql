@@ -28,6 +28,7 @@ type Query {
 
 type Mutation {
   createCourse(createCourseInput: CreateCourseInput!): Course!
+  deleteStudent(id: String!): String!
   createStudent(createStudentInput: CreateStudentInput!): Student!
 }
 

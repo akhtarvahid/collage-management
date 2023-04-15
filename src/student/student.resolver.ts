@@ -17,6 +17,11 @@ export class StudentResolver {
     return this.studentService.findOne(id);
   }
 
+  @Mutation((returns) => String)
+  deleteStudent(@Args('id') id: string) {
+    return this.studentService.delete(id);
+  }
+
   @Mutation((returns) => StudentType)
   createStudent(
     @Args('createStudentInput') createStudentInput: CreateStudentInput,
