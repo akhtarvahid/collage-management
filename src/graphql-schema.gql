@@ -11,8 +11,8 @@ type Course {
 }
 
 type Query {
-  getAllCourse: [Course!]!
-  course: Course!
+  courses: [Course!]!
+  course(id: String!): Course!
 }
 
 type Mutation {

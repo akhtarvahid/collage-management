@@ -8,18 +8,13 @@ export class CourseResolver {
   constructor(private courseService: CourseService) {}
 
   @Query((_returns) => [CourseType])
-  getAllCourse() {
-    return this.courseService.getAll();
+  courses() {
+    return this.courseService.findAll();
   }
 
   @Query((returns) => CourseType)
-  course() {
-    return {
-      id: 342,
-      name: 'Java',
-      startDate: new Date(),
-      endDate: new Date(),
-    };
+  course(@Args('id') id: string) {
+    return this.courseService.findOne(id);
   }
 
   @Mutation((returns) => CourseType)
