@@ -22,6 +22,10 @@ export class StudentService {
 
   async delete(id: string): Promise<string> {
     const found = await this.studentRepository.findOneBy({ id });
+    if (!found) {
+      return 'User does not exist';
+    }
+
     this.studentRepository.delete({
       id,
     });

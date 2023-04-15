@@ -3,7 +3,7 @@ import { Args, Mutation, Resolver, Query } from '@nestjs/graphql';
 import { StudentService } from './student.service';
 import { CreateStudentInput, StudentType } from './student.schema';
 
-@Resolver()
+@Resolver((of) => StudentType)
 export class StudentResolver {
   @Inject() studentService: StudentService;
 
