@@ -12,6 +12,14 @@ export class StudentService {
     private studentRepository: Repository<StudentEntity>,
   ) {}
 
+  findAll(): Promise<StudentEntity[]> {
+    return this.studentRepository.find();
+  }
+
+  findOne(id: string): Promise<StudentEntity> {
+    return this.studentRepository.findOneBy({ id });
+  }
+
   create(createStudentInput: CreateStudentInput): Promise<StudentEntity> {
     const student = this.studentRepository.create({
       id: uuid(),
