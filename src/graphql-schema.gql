@@ -11,6 +11,7 @@ type Course {
 }
 
 type Query {
+  getAllCourse: [Course!]!
   course: Course!
 }
 

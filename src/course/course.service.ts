@@ -11,6 +11,9 @@ export class CourseService {
     private courseRepository: Repository<CourseEntity>,
   ) {}
 
+  getAll(): Promise<CourseEntity[]> {
+    return this.courseRepository.find({});
+  }
   create(name, startDate, endDate, courseStatus): Promise<CourseEntity> {
     const course = this.courseRepository.create({
       id: uuid(),

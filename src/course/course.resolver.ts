@@ -7,6 +7,11 @@ import { CourseService } from './course.service';
 export class CourseResolver {
   constructor(private courseService: CourseService) {}
 
+  @Query((_returns) => [CourseType])
+  getAllCourse() {
+    return this.courseService.getAll();
+  }
+
   @Query((returns) => CourseType)
   course() {
     return {
