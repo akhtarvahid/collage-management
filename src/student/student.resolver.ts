@@ -1,7 +1,7 @@
 import { Inject } from '@nestjs/common';
 import { Args, Mutation, Resolver } from '@nestjs/graphql';
 import { StudentService } from './student.service';
-import { StudentType } from './student.schema';
+import { CreateStudentInput, StudentType } from './student.schema';
 
 @Resolver()
 export class StudentResolver {
@@ -9,18 +9,8 @@ export class StudentResolver {
 
   @Mutation((returns) => StudentType)
   createStudent(
-    @Args('firstName') firstName: string,
-    @Args('lastName') lastName: string,
-    @Args('mobile') mobile: string,
-    @Args('email') email: string,
-    @Args('studentId') studentId: string,
+    @Args('createStudentInput') createStudentInput: CreateStudentInput,
   ) {
-    return this.studentService.create(
-      firstName,
-      lastName,
-      mobile,
-      email,
-      studentId,
-    );
+    return this.studentService.create(createStudentInput);
   }
 }

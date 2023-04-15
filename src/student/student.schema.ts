@@ -1,6 +1,7 @@
-import { Field, ID, ObjectType } from '@nestjs/graphql';
+import { Field, ID, InputType, ObjectType } from '@nestjs/graphql';
+import { IsNumber, IsPhoneNumber } from 'class-validator';
 
-@ObjectType()
+@ObjectType('Student')
 export class StudentType {
   @Field((type) => ID)
   id: string;
@@ -11,8 +12,27 @@ export class StudentType {
   @Field()
   lastName: string;
 
+  @IsPhoneNumber()
   @Field()
-  mobile: string;
+  mobile: number;
+
+  @Field()
+  email: string;
+
+  @Field()
+  studentId: string;
+}
+
+@InputType()
+export class CreateStudentInput {
+  @Field()
+  firstName: string;
+
+  @Field()
+  lastName: string;
+
+  @Field()
+  mobile: number;
 
   @Field()
   email: string;
