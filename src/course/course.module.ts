@@ -3,9 +3,10 @@ import { CourseResolver } from './course.resolver';
 import { CourseService } from './course.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CourseEntity } from './course.entity';
+import { StudentModule } from 'src/student/student.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([CourseEntity])],
+  imports: [TypeOrmModule.forFeature([CourseEntity]), StudentModule],
   providers: [CourseResolver, CourseService],
 })
 export class CourseModule {}

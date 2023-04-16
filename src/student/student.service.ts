@@ -52,4 +52,14 @@ export class StudentService {
 
     return this.studentRepository.save(student);
   }
+
+  async getManyStudents(studentIds: string[]): Promise<StudentEntity[]> {
+    return this.studentRepository.find({
+      where: {
+        id: {
+          $in: studentIds,
+        } as any,
+      },
+    });
+  }
 }

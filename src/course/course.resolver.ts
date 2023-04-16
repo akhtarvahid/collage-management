@@ -11,13 +11,16 @@ import {
   CourseType,
   CreateCourseInput,
 } from './course.schema';
-import { Repository } from 'typeorm';
 import { CourseService } from './course.service';
 import { CourseEntity } from './course.entity';
+import { StudentService } from 'src/student/student.service';
 
 @Resolver((of) => CourseType)
 export class CourseResolver {
-  constructor(private courseService: CourseService) {}
+  constructor(
+    private courseService: CourseService,
+    private studentService: StudentService,
+  ) {}
 
   @Query((_returns) => [CourseType])
   courses() {
@@ -43,5 +46,10 @@ export class CourseResolver {
   ) {
     const { courseId, studentIds } = assignStudentsToCourseInput;
     return this.courseService.assignStudentsToCourse(courseId, studentIds);
+  }
+
+  @ResolveField()
+  async students(@Parent() course: CourseEntity) {
+    return this.studentService.getManyStudents(course.students);
   }
 }
