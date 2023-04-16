@@ -30,6 +30,7 @@ type Mutation {
   createCourse(createCourseInput: CreateCourseInput!): Course!
   deleteStudent(id: String!): String!
   createStudent(createStudentInput: CreateStudentInput!): Student!
+  updateStudent(updateStudent: UpdateStudentInput!): Student!
 }
 
 input CreateCourseInput {
@@ -45,4 +46,13 @@ input CreateStudentInput {
   mobile: Float!
   email: String!
   studentId: String!
+}
+
+input UpdateStudentInput {
+  id: String!
+  firstName: String
+  lastName: String
+  mobile: Float
+  email: String
+  studentId: String
 }
