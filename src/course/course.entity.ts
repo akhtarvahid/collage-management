@@ -19,4 +19,7 @@ export class CourseEntity {
 
   @Column()
   courseStatus: string;
+
+  @Column()
+  students: string[];
 }

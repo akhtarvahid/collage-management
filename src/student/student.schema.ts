@@ -58,6 +58,6 @@ export class UpdateStudentInput {
   @Field({ nullable: true })
   email?: string;
 
-  @Field({ nullable: true })
+  @Field()
   studentId?: string;
 }

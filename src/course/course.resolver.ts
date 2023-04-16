@@ -1,7 +1,19 @@
-import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
-import { CourseType, CreateCourseInput } from './course.schema';
+import {
+  Args,
+  Mutation,
+  Parent,
+  Query,
+  ResolveField,
+  Resolver,
+} from '@nestjs/graphql';
+import {
+  AssignStudentsToCourseInput,
+  CourseType,
+  CreateCourseInput,
+} from './course.schema';
 import { Repository } from 'typeorm';
 import { CourseService } from './course.service';
+import { CourseEntity } from './course.entity';
 
 @Resolver((of) => CourseType)
 export class CourseResolver {
@@ -22,5 +34,14 @@ export class CourseResolver {
     @Args('createCourseInput') createCourseInput: CreateCourseInput,
   ) {
     return this.courseService.create(createCourseInput);
+  }
+
+  @Mutation((returns) => CourseType)
+  async allotStudentsToCourse(
+    @Args('assignStudentsToCourseInput')
+    assignStudentsToCourseInput: AssignStudentsToCourseInput,
+  ) {
+    const { courseId, studentIds } = assignStudentsToCourseInput;
+    return this.courseService.assignStudentsToCourse(courseId, studentIds);
   }
 }

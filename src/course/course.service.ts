@@ -19,15 +19,26 @@ export class CourseService {
     return this.courseRepository.findOneBy({ id });
   }
   create(createCourseInput: CreateCourseInput): Promise<CourseEntity> {
-    const { name, startDate, endDate, courseStatus } = createCourseInput;
+    const { name, startDate, endDate, courseStatus, students } =
+      createCourseInput;
     const course = this.courseRepository.create({
       id: uuid(),
       name,
       startDate,
       endDate,
       courseStatus,
+      students,
     });
 
+    return this.courseRepository.save(course);
+  }
+
+  async assignStudentsToCourse(
+    courseId: string,
+    studentIds: string[],
+  ): Promise<CourseEntity> {
+    const course = await this.courseRepository.findOneBy({ id: courseId });
+    course.students = [...course.students, ...studentIds];
     return this.courseRepository.save(course);
   }
 }

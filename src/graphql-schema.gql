@@ -2,14 +2,6 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type Course {
-  id: ID!
-  name: String!
-  startDate: String!
-  endDate: String!
-  courseStatus: String!
-}
-
 type Student {
   id: ID!
   firstName: String!
@@ -17,6 +9,15 @@ type Student {
   mobile: Float!
   email: String!
   studentId: String!
+}
+
+type Course {
+  id: ID!
+  name: String!
+  startDate: String!
+  endDate: String!
+  courseStatus: String!
+  students: [Student!]!
 }
 
 type Query {
@@ -28,6 +29,7 @@ type Query {
 
 type Mutation {
   createCourse(createCourseInput: CreateCourseInput!): Course!
+  allotStudentsToCourse(assignStudentsToCourseInput: AssignStudentsToCourseInput!): Course!
   deleteStudent(id: String!): String!
   createStudent(createStudentInput: CreateStudentInput!): Student!
   updateStudent(updateStudent: UpdateStudentInput!): Student!
@@ -38,6 +40,12 @@ input CreateCourseInput {
   startDate: String!
   endDate: String!
   courseStatus: String!
+  students: [ID!]! = []
+}
+
+input AssignStudentsToCourseInput {
+  courseId: ID!
+  studentIds: [ID!]!
 }
 
 input CreateStudentInput {
@@ -54,5 +62,5 @@ input UpdateStudentInput {
   lastName: String
   mobile: Float
   email: String
-  studentId: String
+  studentId: String!
 }
