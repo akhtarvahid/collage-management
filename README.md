@@ -15,7 +15,7 @@ TypeOrmModule.forRoot({
 then run your docker to start mongodb server
 
  ```bash
- docker run --mongodb_name -p 27072:27017 -d mongo
+ docker run --name collage -p 27072:27017 -d mongo
  ```
 
 
