@@ -9,6 +9,7 @@ type Student {
   mobile: Float!
   email: String!
   studentId: String!
+  course: Course
 }
 
 type Course {

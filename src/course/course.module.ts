@@ -8,5 +8,6 @@ import { StudentModule } from 'src/student/student.module';
 @Module({
   imports: [TypeOrmModule.forFeature([CourseEntity]), StudentModule],
   providers: [CourseResolver, CourseService],
+  exports: [CourseService],
 })
 export class CourseModule {}

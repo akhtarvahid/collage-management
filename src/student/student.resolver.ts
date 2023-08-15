@@ -1,15 +1,25 @@
 import { Inject } from '@nestjs/common';
-import { Args, Mutation, Resolver, Query } from '@nestjs/graphql';
+import {
+  Args,
+  Mutation,
+  Resolver,
+  Query,
+  ResolveField,
+  Parent,
+} from '@nestjs/graphql';
 import { StudentService } from './student.service';
 import {
   CreateStudentInput,
   StudentType,
   UpdateStudentInput,
 } from './student.schema';
+import { CourseService } from 'src/course/course.service';
+import { StudentEntity } from './student.entity';
 
 @Resolver((of) => StudentType)
 export class StudentResolver {
   @Inject() studentService: StudentService;
+  @Inject() courseService: CourseService;
 
   @Query((returns) => [StudentType])
   students() {
@@ -36,5 +46,11 @@ export class StudentResolver {
   @Mutation((returns) => StudentType)
   updateStudent(@Args('updateStudent') updateStudentInput: UpdateStudentInput) {
     return this.studentService.update(updateStudentInput);
+  }
+
+  @ResolveField()
+  async course(@Parent() student: StudentEntity) {
+    const result = await this.courseService.getStudentCourse(student.id);
+    return result;
   }
 }

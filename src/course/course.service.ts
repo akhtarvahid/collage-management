@@ -41,4 +41,9 @@ export class CourseService {
     course.students = [...course.students, ...studentIds];
     return this.courseRepository.save(course);
   }
+
+  async getStudentCourse(id): Promise<CourseEntity> {
+    const courses = await this.courseRepository.find({});
+    return courses.find((course) => course.students.includes(id));
+  }
 }

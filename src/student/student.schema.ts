@@ -1,5 +1,7 @@
 import { Field, ID, InputType, ObjectType } from '@nestjs/graphql';
 import { IsPhoneNumber } from 'class-validator';
+import { CourseEntity } from 'src/course/course.entity';
+import { CourseType } from 'src/course/course.schema';
 
 @ObjectType('Student')
 export class StudentType {
@@ -21,6 +23,9 @@ export class StudentType {
 
   @Field()
   studentId: string;
+
+  @Field((type) => CourseType, { nullable: true })
+  course: CourseType;
 }
 
 @InputType()

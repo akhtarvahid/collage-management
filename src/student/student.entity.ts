@@ -1,3 +1,4 @@
+import { CourseEntity } from 'src/course/course.entity';
 import { Column, Entity, ObjectIdColumn, PrimaryColumn } from 'typeorm';
 
 @Entity()
@@ -22,4 +23,7 @@ export class StudentEntity {
 
   @Column()
   studentId: string;
+
+  @Column()
+  course: CourseEntity;
 }
