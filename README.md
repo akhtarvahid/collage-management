@@ -1,15 +1,15 @@
-
+# Follow steps to run application
 
 ## Create connection
 ```
 TypeOrmModule.forRoot({
-      type: 'mongodb',
-      url: 'mongodb://localhost/collage',
-      synchronize: true,
-      useUnifiedTopology: true,
-      port: 27072,
-      entities: [CourseEntity],
-    }),
+    type: 'mongodb',
+    url: 'mongodb://localhost/collage',
+    synchronize: true,
+    useUnifiedTopology: true,
+    port: 27072,
+    entities: [],
+})
 ```
 
 then run your docker to start mongodb server

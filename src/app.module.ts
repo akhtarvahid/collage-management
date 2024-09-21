@@ -18,6 +18,7 @@ import { StudentEntity } from './student/student.entity';
       port: 27072,
       entities: [CourseEntity, StudentEntity],
     }),
+    
     GraphQLModule.forRoot<ApolloDriverConfig>({
       autoSchemaFile: join(process.cwd(), 'src/graphql-schema.gql'),
       driver: ApolloDriver,
